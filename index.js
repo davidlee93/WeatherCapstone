@@ -1,11 +1,11 @@
-const GOOGLE_MAPS_URL = 'https://maps.googleapis.com/maps/api/geocode/json?';
+const GOOGLE_GEOCODE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?';
 
-function getDataFromApi(searchTerm, callback) {
+function getDataFromGeocode(searchTerm, callback) {
   const query = {
     'address': `${searchTerm}`,
     'key': 'AIzaSyDXPwZNqdJfJyq4uUqixZuWDiL4FigBSVc'
   }
-  $.getJSON(GOOGLE_MAPS_URL, query, callback);
+  $.getJSON(GOOGLE_GEOCODE_URL, query, callback);
 }
 
 const WUNDERGROUND_URL = 'https://api.wunderground.com/api/2b3643fa128b66c3/forecast/q';
@@ -31,14 +31,14 @@ function renderResult(result) {
 }
 
 function displayWunderGroundData(data) {
+  // const results = data.items.map((item, index) => renderResult(item));
+  // $('.js-search-results').html(results);
   const results = data.forecast.txt_forecast.forecastday.map((item, index) => renderResult(item));
   $('.js-search-results').html(results);
   
 }
 
-function displayGoogleMapsData(data) {
-  // const results = data.items.map((item, index) => renderResult(item));
-  // $('.js-search-results').html(results);
+function getLatLngData(data) {
   console.log(data.results[0].geometry.location);
   const location = data.results[0].geometry.location;
   getDataFromWunderGroundApi(location, displayWunderGroundData);
@@ -51,7 +51,7 @@ function watchSubmit() {
     const query = queryTarget.val();
     /*// clear out the input*/
     queryTarget.val("");
-    getDataFromApi(query, displayGoogleMapsData);
+    getDataFromGeocode(query, getLatLngData);
   });
 }
 
