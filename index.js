@@ -53,10 +53,10 @@ function getDataFromDirectionsApi(queryOrigin, queryDestination, callback) {
 }
 
 function getDirectionsData(data) {
-  for(let i = 0; i < data.routes.legs[0].steps.length; i++){
+  for(let i = 0; i < data.routes[0].legs[0].steps.length; i++){
     var directionsList = []
-    console.log(data.routes.legs[0].steps[i].html_instructions);
-    const directionsToLocation = data.routes.legs[0].steps[i].html_instructions;
+    console.log(data.routes[0].legs[0].steps[i].html_instructions);
+    const directionsToLocation = data.routes[0].legs[0].steps[i].html_instructions;
     directionsList.push(directionsToLocation);
   }
   $('.js-search-results').append(directionsList); 
