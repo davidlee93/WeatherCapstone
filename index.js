@@ -24,6 +24,10 @@ function getDestinationLatLngData(data) {
   getDataFromWunderGroundApi(destinationLocation, displayDestinationWunderGroundData);
 }
 
+function getDestinationAddress(data) {
+  $('.js-search-results').html(`Weather Forecast in: ${data.results[0].formatted_address}`);
+}
+
 function getDataFromWunderGroundApi(location, callback) {
   console.log("wundergroundapi")
   $.getJSON(`${WUNDERGROUND_URL}/${location.lat},${location.lng}.json`, callback)
@@ -78,17 +82,6 @@ function renderResult(result) {
   `;
 }
 
-function initMap() {
-  var uluru = {lat: 37.863, lng: -122.224};
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: uluru
-  });
-  var marker = new google.maps.Marker({
-    position: uluru,
-    map: map
-  });
-}
 
 function watchSubmit() {
   $('.js-search-form').submit(event => {
@@ -96,11 +89,11 @@ function watchSubmit() {
     const originTarget = $(event.currentTarget).find('.js-origin');
     const destinationTarget = $(event.currentTarget).find('.js-destination');
     const queryOrigin = originTarget.val();
-    const queryDestination= destinationTarget.val();
-    
+    const queryDestination = destinationTarget.val();
     originTarget.val("");
     destinationTarget.val("");
     /*// clear out the input*/
+    getDataFromGeocodeApi(queryDestination, getDestinationAddress);
     getDataFromGeocodeApi(queryOrigin, getOriginLatLngData);
     getDataFromGeocodeApi(queryDestination, getDestinationLatLngData);
     getDataFromDirectionsApi(queryOrigin, queryDestination, getDirectionsData);
