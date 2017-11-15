@@ -86,8 +86,8 @@ function watchSubmit() {
     const queryOrigin = originTarget.val();
     const queryDestination= destinationTarget.val();
     
-    weatherTarget.val("");
-    directionsOriginTarget.val("");
+    originTarget.val("");
+    destinationTarget.val("");
     /*// clear out the input*/
     getDataFromGeocodeApi(queryOrigin, getOriginLatLngData);
     getDataFromGeocodeApi(queryDestination, getDestinationLatLngData);
