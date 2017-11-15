@@ -53,8 +53,8 @@ function getDataFromDirectionsApi(queryOrigin, queryDestination, callback) {
 }
 
 function getDirectionsData(data) {
+  var directionsList = [];
   for(let i = 0; i < data.routes[0].legs[0].steps.length; i++){
-    var directionsList = []
     console.log(data.routes[0].legs[0].steps[i].html_instructions);
     const directionsToLocation = data.routes[0].legs[0].steps[i].html_instructions;
     directionsList.push(directionsToLocation);
