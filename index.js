@@ -58,14 +58,12 @@ function displayDestinationWunderGroundData(data) {
 function getOriginLatLngData(data) {
   console.log(data.results[0].geometry.location);
   const originLocation = data.results[0].geometry.location;
-  $('.js-search-results').append(data.results[0].formatted_address); 
   getDataFromWunderGroundApi(originLocation, displayOriginWunderGroundData);
 }
 
 function getDestinationLatLngData(data) {
   console.log(data.results[0].geometry.location);
   const destinationLocation = data.results[0].geometry.location;
-  $('.js-search-results').append(data.results[0].formatted_address)
   getDataFromWunderGroundApi(destinationLocation, displayDestinationWunderGroundData);
 }
 
