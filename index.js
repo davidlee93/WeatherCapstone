@@ -88,6 +88,7 @@ function watchSubmit() {
     
     originTarget.val("");
     destinationTarget.val("");
+    $('.js-search-results').html("");
     /*// clear out the input*/
     getDataFromGeocodeApi(queryOrigin, getOriginLatLngData);
     getDataFromGeocodeApi(queryDestination, getDestinationLatLngData);
