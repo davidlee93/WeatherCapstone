@@ -12,14 +12,14 @@ function getDataFromGeocodeApi(searchTerm, callback) {
   $.getJSON(GOOGLE_GEOCODE_URL, query, callback);
 }
 
-function getDataFromDirectionsApi(searchTerm, callback) {
-  const query = {
-    'origin': `${searchTerm}`,
-    'destination: '
-    'key': 'AIzaSyDZ0E2z4VWHcV3YH-Io01lsoORCDsG9jRg'
-  }
-  $.getJSON(GOOGLE_DIRECTIONS_URL, query, callback);
-}
+// function getDataFromDirectionsApi(searchTerm, callback) {
+//   const query = {
+//     'origin': `${searchTerm}`,
+//     'destination: '
+//     'key': 'AIzaSyDZ0E2z4VWHcV3YH-Io01lsoORCDsG9jRg'
+//   }
+//   $.getJSON(GOOGLE_DIRECTIONS_URL, query, callback);
+// }
 
 function getDataFromWunderGroundApi(location, callback) {
   console.log("wundergroundapi")
@@ -44,7 +44,6 @@ function renderResult(result) {
 function displayOriginWunderGroundData(data) {
   // const results = data.items.map((item, index) => renderResult(item));
   // $('.js-search-results').html(results);
-  $('.js-search-results').append(data.results[0].formatted_address); 
   const originResults = data.forecast.txt_forecast.forecastday.map((item, index) => renderResult(item));
   $('.js-search-results').append(originResults); 
 }
@@ -52,7 +51,6 @@ function displayOriginWunderGroundData(data) {
 function displayDestinationWunderGroundData(data) {
   // const results = data.items.map((item, index) => renderResult(item));
   // $('.js-search-results').html(results);
-   $('.js-search-results').append(data.results[0].formatted_address)
   const destinationResults = data.forecast.txt_forecast.forecastday.map((item, index) => renderResult(item));
   $('.js-search-results').append(destinationResults); 
 }
@@ -60,40 +58,40 @@ function displayDestinationWunderGroundData(data) {
 function getOriginLatLngData(data) {
   console.log(data.results[0].geometry.location);
   const originLocation = data.results[0].geometry.location;
-
-  getDataFromWunderGroundApi(location, displayOriginWunderGroundData);
+  $('.js-search-results').append(data.results[0].formatted_address); 
+  getDataFromWunderGroundApi(originLocation, displayOriginWunderGroundData);
 }
 
 function getDestinationLatLngData(data) {
   console.log(data.results[0].geometry.location);
   const destinationLocation = data.results[0].geometry.location;
-
-  getDataFromWunderGroundApi(location, displayDesitationWunderGroundData);
+  $('.js-search-results').append(data.results[0].formatted_address)
+  getDataFromWunderGroundApi(destinationLocation, displayDestinationWunderGroundData);
 }
 
-function getDirectionsData(data) {
-  for(let i = 0; i < data.routes.legs[0].steps.length; i++){
-    console.log(data.routes.legs[0].steps[i].html_instructions);
-  }
-  const originLocation = data.results[0].geometry.location;
-  getDataFromWunderGroundApi(location, displayWunderGroundData);
-}
+// function getDirectionsData(data) {
+//   for(let i = 0; i < data.routes.legs[0].steps.length; i++){
+//     console.log(data.routes.legs[0].steps[i].html_instructions);
+//   }
+//   const originLocation = data.results[0].geometry.location;
+//   getDataFromWunderGroundApi(location, displayWunderGroundData);
+// }
 
 
 function watchSubmit() {
   $('.js-search-form').submit(event => {
     event.preventDefault();
-    const weatherTarget = $(event.currentTarget).find('.js-destination');
-    const directionsOriginTarget = $(event.currentTarget).find('.js-origin');
-    const queryDestination= weatherTarget.val();
-    const queryOrigin = directionsOriginTarget.val();
+    const originTarget = $(event.currentTarget).find('.js-origin');
+    const destinationTarget = $(event.currentTarget).find('.js-destination');
+    const queryOrigin = originTarget.val();
+    const queryDestination= destinationTarget.val();
     
     weatherTarget.val("");
     directionsOriginTarget.val("");
     /*// clear out the input*/
-    
-    getDataFromGeocodeApi(queryDestination, getDestinationLatLngData);
     getDataFromGeocodeApi(queryOrigin, getOriginLatLngData);
+    getDataFromGeocodeApi(queryDestination, getDestinationLatLngData);
+
   });
 }
 
