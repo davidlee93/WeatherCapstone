@@ -19,6 +19,7 @@ function getDestinationLatLngData(data) {
 }
 
 function getDestinationAddress(data) {
+  $('.js-weather-results').html("");
   $('.js-weather-results').append(`Weather Forecast in: ${data.results[0].formatted_address}`);
 }
 
@@ -54,7 +55,7 @@ function renderRoute(route) {
     return (
       `<li>${step.instructions}</li>`);
   });
-  $("#directions").html(directions);
+  $(".directions").html(directions);
 }
 
 function initMap(origin, destination) {
@@ -62,8 +63,8 @@ function initMap(origin, destination) {
   // Optionally create a map
   var directionsDisplay = new google.maps.DirectionsRenderer;
   var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 9,
-      center: {lat: 37.8637, lng: -122.2682}
+      zoom: 7,
+      center: {lat: 37.872899, lng: -122.25854}
   });
   directionsDisplay.setMap(map);
 
@@ -101,5 +102,7 @@ function watchSubmit() {
     
   });
 }
+
+
 
 $(watchSubmit);

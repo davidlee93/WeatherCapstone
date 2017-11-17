@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <title>WeatherOrNotTrip</title>
-    <link href="main.css" rel="stylesheet" type="text/css" />
+    <link href="index.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <main>
@@ -16,11 +17,10 @@
         <button type="submit">Search</button>
       </form>
       <h2>Map and Directions</h2>
-      <div id="map" style="position: relative;">
-        <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
-        </div>
+      <div id="map" style=""></div>
+      <div id="directions">
+        <ol class="directions"></ol>
       </div>
-      <ol id="directions"></ol>
       <h2>Weather</h2>
       <div class="js-weather-results">
       </div>
@@ -28,5 +28,5 @@
     <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ0E2z4VWHcV3YH-Io01lsoORCDsG9jRg"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="index.js"></script>
-  </body>
+  </body>  
 </html>

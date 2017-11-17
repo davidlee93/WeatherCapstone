@@ -1,13 +1,22 @@
-* {
-	margin: 0;
-	padding-left: 8px;
+html, body {
+  margin: 0;
+  padding-left: 2px;
 }
 
 #map {
-	height: 100%;
+  height: 500px;
+  display: inline-block;
+  width: 65%;
+  clear: right;
 }
-/* Optional: Makes the sample page fill the window. */
-html, body {
-    height: 100%;
-    margin: 0;
+
+#directions{
+  display: block;
+  width: 35%;
+  float: right;
 }
+
+.js-weather-results{
+  display: block;
+}
+
