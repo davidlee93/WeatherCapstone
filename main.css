@@ -8,6 +8,7 @@ html, body {
   display: inline-block;
   width: 65%;
   clear: right;
+  overflow: visible;
 }
 
 #directions{
