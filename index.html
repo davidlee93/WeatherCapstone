@@ -15,10 +15,17 @@
         <input type="text" class="js-destination">
         <button type="submit">Search</button>
       </form>
-      <h2>Results</h2>
-      <div class="js-search-results">
+      <h2>Map and Directions</h2>
+      <div id="map" style="position: relative;">
+        <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
+        </div>
+      </div>
+      <ol id="directions"></ol>
+      <h2>Weather</h2>
+      <div class="js-weather-results">
       </div>
     </main>
+    <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ0E2z4VWHcV3YH-Io01lsoORCDsG9jRg"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="index.js"></script>
   </body>

@@ -8,14 +8,8 @@ function getDataFromGeocodeApi(searchTerm, callback) {
   const query = {
     'address': `${searchTerm}`,
     'key': 'AIzaSyDXPwZNqdJfJyq4uUqixZuWDiL4FigBSVc'
-  }
+  };
   $.getJSON(GOOGLE_GEOCODE_URL, query, callback);
-}
-
-function getOriginLatLngData(data) {
-  console.log(data.results[0].geometry.location);
-  const originLocation = data.results[0].geometry.location;
-  getDataFromWunderGroundApi(originLocation, displayOriginWunderGroundData);
 }
 
 function getDestinationLatLngData(data) {
@@ -25,47 +19,20 @@ function getDestinationLatLngData(data) {
 }
 
 function getDestinationAddress(data) {
-  $('.js-search-results').html(`Weather Forecast in: ${data.results[0].formatted_address}`);
+  $('.js-weather-results').append(`Weather Forecast in: ${data.results[0].formatted_address}`);
 }
 
 function getDataFromWunderGroundApi(location, callback) {
-  console.log("wundergroundapi")
-  $.getJSON(`${WUNDERGROUND_URL}/${location.lat},${location.lng}.json`, callback)
-}
-
-function displayOriginWunderGroundData(data) {
-  // const results = data.items.map((item, index) => renderResult(item));
-  // $('.js-search-results').html(results);
-  const originResults = data.forecast.txt_forecast.forecastday.map((item, index) => renderResult(item));
-  $('.js-search-results').append(originResults); 
+  console.log("wundergroundapi");
+  $.getJSON(`${WUNDERGROUND_URL}/${location.lat},${location.lng}.json`, callback);
 }
 
 function displayDestinationWunderGroundData(data) {
   // const results = data.items.map((item, index) => renderResult(item));
   // $('.js-search-results').html(results);
   const destinationResults = data.forecast.txt_forecast.forecastday.map((item, index) => renderResult(item));
-  $('.js-search-results').append(destinationResults); 
+  $('.js-weather-results').append(destinationResults); 
 }
-
-function getDataFromDirectionsApi(queryOrigin, queryDestination, callback) {
-  const query = {
-    'origin': `${queryOrigin}`,
-    'destination': `${queryDestination}`,
-    'key': 'AIzaSyDZ0E2z4VWHcV3YH-Io01lsoORCDsG9jRg'
-  }
-  $.getJSON(GOOGLE_DIRECTIONS_URL, query, callback);
-}
-
-function getDirectionsData(data) {
-  var directionsList = [];
-  for(let i = 0; i < data.routes[0].legs[0].steps.length; i++){
-    console.log(data.routes[0].legs[0].steps[i].html_instructions);
-    const directionsToLocation = data.routes[0].legs[0].steps[i].html_instructions;
-    directionsList.push(directionsToLocation);
-  }
-  $('.js-search-results').append(directionsList); 
-}
-
 
 function renderResult(result) {
   return `
@@ -82,6 +49,41 @@ function renderResult(result) {
   `;
 }
 
+function renderRoute(route) {
+  const directions = route.steps.map(step => {
+    return (
+      `<li>${step.instructions}</li>`);
+  });
+  $("#directions").html(directions);
+}
+
+function initMap(origin, destination) {
+  var directionsService = new google.maps.DirectionsService;
+  // Optionally create a map
+  var directionsDisplay = new google.maps.DirectionsRenderer;
+  var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 9,
+      center: {lat: 37.8637, lng: -122.2682}
+  });
+  directionsDisplay.setMap(map);
+
+  directionsService.route({
+          origin,
+          destination,
+          travelMode: 'DRIVING'
+  }, function(response, status) {
+      if (status === 'OK') {
+          // Pass data to the map
+          directionsDisplay.setDirections(response);
+
+          // See the data in the console
+          console.log(response.routes[0].legs[0].steps[0].instructions);
+          renderRoute(response.routes[0].legs[0]);
+      } else {
+          window.alert('Directions request failed due to ' + status);
+      }
+  });
+}
 
 function watchSubmit() {
   $('.js-search-form').submit(event => {
@@ -93,10 +95,10 @@ function watchSubmit() {
     originTarget.val("");
     destinationTarget.val("");
     /*// clear out the input*/
+    initMap(queryOrigin, queryDestination);
     getDataFromGeocodeApi(queryDestination, getDestinationAddress);
-    getDataFromGeocodeApi(queryOrigin, getOriginLatLngData);
     getDataFromGeocodeApi(queryDestination, getDestinationLatLngData);
-    getDataFromDirectionsApi(queryOrigin, queryDestination, getDirectionsData);
+    
   });
 }
 
