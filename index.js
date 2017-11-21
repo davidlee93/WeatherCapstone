@@ -20,7 +20,8 @@ function getDestinationLatLngData(data) {
 
 function getDestinationAddress(data) {
   $('.js-weather-results').html("");
-  $('.js-weather-results').append(`Weather Forecast in: ${data.results[0].formatted_address}`);
+  $('.weatherforecast').html("");
+  $('.weatherforecast').html(`Weather Forecast in: ${data.results[0].formatted_address}`);
 }
 
 function getDataFromWunderGroundApi(location, callback) {
@@ -37,14 +38,13 @@ function displayDestinationWunderGroundData(data) {
 
 function renderResult(result) {
   return `
-    <div>
+    <div class="weather-day">
       <p> Day: ${result.title} </p?>
       <p>${result.fcttext}</p>
-      <p> Chance of rain: ${result.pop}%
-        <a class="js-video-thumbnail" href="${result.icon_url}" target="_blank">
-        <img src="${result.icon_url}">
-        </a>
-      </p>
+      <a class="weather-icon" href="${result.icon_url}" target="_blank">
+      <img src="${result.icon_url}">
+      </a>
+      <p> Chance of rain: ${result.pop}%</p>
       <br></br>
     </div>
   `;
@@ -86,6 +86,11 @@ function initMap(origin, destination) {
   });
 }
 
+function removeHiddenClass() {
+  $('#mapContainer').removeClass('hidden');
+  $('#weatherContainer').removeClass('hidden');
+}
+
 function watchSubmit() {
   $('.js-search-form').submit(event => {
     event.preventDefault();
@@ -97,6 +102,7 @@ function watchSubmit() {
     destinationTarget.val("");
     /*// clear out the input*/
     initMap(queryOrigin, queryDestination);
+    removeHiddenClass();
     getDataFromGeocodeApi(queryDestination, getDestinationAddress);
     getDataFromGeocodeApi(queryDestination, getDestinationLatLngData);
     

@@ -3,26 +3,38 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <title>WeatherOrNotTrip</title>
+    <title>WeatherOrNot</title>
     <link href="main.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   </head>
   <body>
-    <main>
-      <h1>Search a destination to find directions and weather forecast using multiple APIs</h1>
-      <form action="#" class="js-search-form">
-        <label for="query"></label>
-        <input type="text" class="js-origin" placeholder="Origin">
-        <input type="text" class="js-destination" placeholder="Destination">
-        <button type="submit">Search</button>
-      </form>
-      <h2>Map and Directions</h2>
-      <div id="map"></div>
-      <div id="directions">
-        <ol class="directions"></ol>
+    <header>
+      <div class="row">
+        <div class="banner">
+          <h1 class="tagline">Let's find out, WeatherOrNot</h1>
+          <form action="#" class="js-search-form flex">
+            <label for="query">from</label>
+            <input type="text" class="js-origin" placeholder="ex. San Francisco" required>
+            <label for="query"> to </label>
+            <input type="text" class="js-destination" placeholder="ex. Los Angeles" required>
+            <button type="submit">Search</button>
+          </form>
+        </div>
       </div>
-      <h2>Weather</h2>
-      <div class="js-weather-results">
+    </header>
+    <main> 
+      <div id="mapContainer" class="hidden">
+        <h2>Map and Directions</h2>
+        <div id="map"></div>
+        <div id="directions">
+          <ol class="directions"></ol>
+        </div>
       </div>
+      <div id="weatherContainer" class="hidden">
+        <h2>Weather</h2>
+        <div class="weatherforecast"></div>
+        <div class="js-weather-results"></div>     
+      </div>    
     </main>
     <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ0E2z4VWHcV3YH-Io01lsoORCDsG9jRg"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
