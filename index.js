@@ -21,7 +21,7 @@ function getDestinationLatLngData(data) {
 function getDestinationAddress(data) {
   $('.js-weather-results').html("");
   $('.weatherforecast').html("");
-  $('.weatherforecast').html(`Weather Forecast in: ${data.results[0].formatted_address}`);
+  $('.weatherforecast').html(`<h3>Weather Forecast in: ${data.results[0].formatted_address} </h3>`);
 }
 
 function getDataFromWunderGroundApi(location, callback) {
@@ -30,8 +30,6 @@ function getDataFromWunderGroundApi(location, callback) {
 }
 
 function displayDestinationWunderGroundData(data) {
-  // const results = data.items.map((item, index) => renderResult(item));
-  // $('.js-search-results').html(results);
   const destinationResults = data.forecast.txt_forecast.forecastday.map((item, index) => renderResult(item));
   $('.js-weather-results').append(destinationResults); 
 }
@@ -54,8 +52,14 @@ function renderRoute(route) {
   const directions = route.steps.map(step => {
     return (
       `<li>${step.instructions}</li>`);
-  });
+    });
+  $("#directions").html(`<ol class="directions"></ol>
+    <div class="estimatedTime"></div>
+    <div class="distance"></div>`);
+  $(".directions").before(`<h3> Directions to ${route.end_address}<h3>`);
   $(".directions").html(directions);
+  $(".estimatedTime").html(`<p>Estimated time: ${route.duration.text}</p>`);
+  $(".distance").html(`<p>Distance away: ${route.distance.text}</p>`);
 }
 
 function initMap(origin, destination) {
@@ -104,8 +108,9 @@ function watchSubmit() {
     initMap(queryOrigin, queryDestination);
     removeHiddenClass();
     getDataFromGeocodeApi(queryDestination, getDestinationAddress);
+    // to display destination address
     getDataFromGeocodeApi(queryDestination, getDestinationLatLngData);
-    
+    // to get latitude and longitude coordinates for weather API
   });
 }
 
