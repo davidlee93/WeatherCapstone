@@ -4,7 +4,7 @@
 }
 
 html {
-	background-color: #FFC122;
+	background-color: #FFFBEA;
 }
 
 body {
@@ -106,7 +106,7 @@ button:hover {
 }
 
 #mapContainer	{
-	background-color: #FFE013;
+	background-color: #FFFBEA;
 }
 
 h2	{
@@ -124,10 +124,6 @@ h2	{
 	padding-bottom: 0;
 }
 
-h3{
-	margin: 0;
-}
-
 #directions	{
 	display: block;
 	width: 35%;
@@ -137,6 +133,7 @@ h3{
 	color: #015EB6;
 	font-size: 18px;
 	padding: 2px 10px;
+	background-color: #FCCC0C;
 }
 
 ol {
@@ -152,7 +149,15 @@ ol {
 }
 
 #weatherContainer	{
-	background-color: #FFE013;
+	background-color: #FFFBEA;
+}
+
+.weatherHeader {
+	margin-bottom: 0;
+}
+
+h3 {
+	margin: 2px;
 }
 
 .js-weather-results	{
@@ -173,7 +178,9 @@ ol {
 .weatherforecast {
 	font-size: 18px;
 	color: #015EB6;
-	padding-left: 10px;
+	padding: 0;
+	margin: 0;
+	text-align: center;
 }
 
 .hidden {

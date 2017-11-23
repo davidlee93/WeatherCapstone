@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <title>WeatherOrNot</title>
     <link href="main.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   </head>
   <body>
-    <header>
+    <header role="search">
       <div class="row">
         <div class="banner">
           <h1 class="tagline">Let's find out, WeatherOrNot</h1>
@@ -22,8 +23,8 @@
         </div>
       </div>
     </header>
-    <main> 
-      <div id="mapContainer" class="hidden">
+    <main role="main" aria-live="assertive"> 
+      <div id="mapContainer" class="hidden" aria-live="assertive">
         <h2 class="mapDirectionHeader">Map and Directions</h2>
         <div id="map"></div>
         <div id="directions">
@@ -32,7 +33,7 @@
           <div class="distance"></div>
         </div>
       </div>
-      <div id="weatherContainer" class="hidden">
+      <div id="weatherContainer" class="hidden" aria-live="assertive">
         <h2 class="weatherHeader">Weather</h2>
         <div class="weatherforecast"></div>
         <div class="js-weather-results"></div>     
