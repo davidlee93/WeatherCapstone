@@ -192,14 +192,37 @@ h3 {
 	align-items: center;
 }
 
-@media only screen and (min-height: 450px)	{
-	header {
-		height: 100vh;
-		padding: 0 10px;
-	}
-	.header_content {
-			position: relative;
-			transform: translate(0px, -50%);
-			top: 50%;
+
+@media only screen and (max-width: 890px)	{
+	.weather-day, .js-weather-results {
+  	display: flex;
+  	flex-flow: column nowrap;
+  	}
+}
+
+@media only screen and (max-width: 620px) {
+  /* For mobile phones: */
+  .tagline {
+  	text-align: center;
+  }
+
+  form	{
+  	display: flex;
+  	flex-flow: column;
+  }
+
+  button {
+ 	margin-top: 10px;
+  }
+
+  #map, #directions	{
+    width: 100%;
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+	.tagline{
+		font-size: 40px;
 	}
 }
