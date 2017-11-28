@@ -214,6 +214,11 @@ h3 {
 	align-items: center;
 }
 
+.wundergroundLogo	{
+	margin: 0 auto;
+	text-align: center;
+}
+
 
 @media only screen and (max-width: 890px)	{
 	.weather-day, .js-weather-results {
