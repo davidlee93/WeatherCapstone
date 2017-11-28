@@ -37,13 +37,12 @@ function displayDestinationWunderGroundData(data) {
 function renderResult(result) {
   return `
     <div class="weather-day">
-      <p> Day: ${result.title} </p?>
+      <p> ${result.title} </p>
       <p>${result.fcttext}</p>
       <a class="weather-icon" href="${result.icon_url}" target="_blank">
       <img src="${result.icon_url}">
       </a>
       <p> Chance of rain: ${result.pop}%</p>
-      <br></br>
     </div>
   `;
 }
@@ -58,7 +57,7 @@ function renderRoute(route) {
     <div class="distance"></div>`);
   $(".directions").before(`<h3> Directions to ${route.end_address}<h3>`);
   $(".directions").html(directions);
-  $(".estimatedTime").html(`<p>Estimated time: ${route.duration.text}</p>`);
+  $(".estimatedTime").html(`<hr><p>Estimated time: ${route.duration.text}</p>`);
   $(".distance").html(`<p>Distance away: ${route.distance.text}</p>`);
 }
 
