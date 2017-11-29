@@ -3,10 +3,6 @@
 	font-family: 'Lato', sans-serif;
 }
 
-html {
-	background-color: rgba(255, 231, 77, 1);
-}
-
 body {
 	margin: 0;
 	font-weight: 300;
@@ -137,7 +133,7 @@ h2	{
 	color: #0584D7;
 	font-size: 18px;
 	padding: 1rem;
-	background-color: rgb(255, 251, 234);
+	background-color: #bddce4;
 }
 
 ol {
@@ -168,7 +164,7 @@ hr {
 }
 
 #weatherContainer	{
-	background-color: #FFFFFF;
+	background-color: #bddce4;
 }
 
 .weatherHeader {
