@@ -31,7 +31,8 @@ function getDataFromWunderGroundApi(location, callback) {
 
 function displayDestinationWunderGroundData(data) {
   const destinationResults = data.forecast.txt_forecast.forecastday.map((item, index) => renderResult(item));
-  $('.js-weather-results').append(destinationResults); 
+  $('.js-weather-results').append(destinationResults);
+  $('.weather-day:nth-last-child(-n+2)').addClass('hidden');
 }
 
 function renderResult(result) {
@@ -92,6 +93,7 @@ function initMap(origin, destination) {
 function removeHiddenClass() {
   $('#mapContainer').removeClass('hidden');
   $('#weatherContainer').removeClass('hidden');
+  document.getElementById('mapContainer').scrollIntoView({behavior: 'smooth'});
 }
 
 function watchSubmit() {
