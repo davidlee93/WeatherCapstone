@@ -4,50 +4,6 @@ const WUNDERGROUND_URL = 'https://api.wunderground.com/api/2b3643fa128b66c3/fore
 
 const GOOGLE_DIRECTIONS_URL = 'https://maps.googleapis.com/maps/api/directions/json?';
 
-function getDataFromGeocodeApi(searchTerm, callback) {
-  const query = {
-    'address': `${searchTerm}`,
-    'key': 'AIzaSyDXPwZNqdJfJyq4uUqixZuWDiL4FigBSVc'
-  };
-  $.getJSON(GOOGLE_GEOCODE_URL, query, callback);
-}
-
-function getDestinationLatLngData(data) {
-  console.log(data.results[0].geometry.location);
-  const destinationLocation = data.results[0].geometry.location;
-  getDataFromWunderGroundApi(destinationLocation, displayDestinationWunderGroundData);
-}
-
-function getDestinationAddress(data) {
-  $('.js-weather-results').html("");
-  $('.weatherforecast').html("");
-  $('.weatherforecast').html(`<h3>Weather Forecast in: ${data.results[0].formatted_address} </h3>`);
-}
-
-function getDataFromWunderGroundApi(location, callback) {
-  console.log("wundergroundapi");
-  $.getJSON(`${WUNDERGROUND_URL}/${location.lat},${location.lng}.json`, callback);
-}
-
-function displayDestinationWunderGroundData(data) {
-  const destinationResults = data.forecast.txt_forecast.forecastday.map((item, index) => renderResult(item));
-  $('.js-weather-results').append(destinationResults);
-  $('.weather-day:nth-last-child(-n+2)').addClass('hidden');
-}
-
-function renderResult(result) {
-  return `
-    <div class="weather-day">
-      <p> ${result.title} </p>
-      <p>${result.fcttext}</p>
-      <a class="weather-icon" href="${result.icon_url}" target="_blank">
-      <img src="${result.icon_url}">
-      </a>
-      <p> Chance of rain: ${result.pop}%</p>
-    </div>
-  `;
-}
-
 function renderRoute(route) {
   const directions = route.steps.map(step => {
     return (
@@ -90,6 +46,51 @@ function initMap(origin, destination) {
   });
 }
 
+function getDataFromGeocodeApi(searchTerm, callback) {
+  const query = {
+    'address': `${searchTerm}`,
+    'key': 'AIzaSyDXPwZNqdJfJyq4uUqixZuWDiL4FigBSVc'
+  };
+  $.getJSON(GOOGLE_GEOCODE_URL, query, callback);
+}
+
+function getDestinationLatLngData(data) {
+  console.log(data.results[0].geometry.location);
+  const destinationLocation = data.results[0].geometry.location;
+  getDataFromWunderGroundApi(destinationLocation, displayDestinationWunderGroundData);
+}
+
+function getDestinationAddress(data) {
+  $('.js-weather-results').html("");
+  $('.weatherforecast').html("");
+  $('.weatherforecast').html(`<h3>Weather Forecast in: ${data.results[0].formatted_address} </h3>`);
+}
+
+function getDataFromWunderGroundApi(location, callback) {
+  console.log("wundergroundapi");
+  $.getJSON(`${WUNDERGROUND_URL}/${location.lat},${location.lng}.json`, callback);
+}
+
+function displayDestinationWunderGroundData(data) {
+  const destinationResults = data.forecast.txt_forecast.forecastday.map((item, index) => renderForecastResult(item));
+  $('.js-weather-results').append(destinationResults);
+  // hides the last two div elements of forecast - 4 days felt too much/crammed
+  $('.weather-day:nth-last-child(-n+2)').addClass('hidden');
+}
+
+function renderForecastResult(result) {
+  return `
+    <div class="weather-day">
+      <p> ${result.title} </p>
+      <p>${result.fcttext}</p>
+      <a class="weather-icon" href="${result.icon_url}" target="_blank">
+      <img src="${result.icon_url}">
+      </a>
+      <p> Chance of rain: ${result.pop}%</p>
+    </div>
+  `;
+}
+
 function removeHiddenClass() {
   $('#mapContainer').removeClass('hidden');
   $('#weatherContainer').removeClass('hidden');
@@ -103,18 +104,20 @@ function watchSubmit() {
     const destinationTarget = $(event.currentTarget).find('.js-destination');
     const queryOrigin = originTarget.val();
     const queryDestination = destinationTarget.val();
+    /*// clear out the inputs*/
     originTarget.val("");
     destinationTarget.val("");
-    /*// clear out the input*/
+    // initallize map and directions
     initMap(queryOrigin, queryDestination);
+    // reveal the map and weather containers
     removeHiddenClass();
-    getDataFromGeocodeApi(queryDestination, getDestinationAddress);
     // to display destination address
-    getDataFromGeocodeApi(queryDestination, getDestinationLatLngData);
+    getDataFromGeocodeApi(queryDestination, getDestinationAddress);
     // to get latitude and longitude coordinates for weather API
+    getDataFromGeocodeApi(queryDestination, getDestinationLatLngData);
   });
 }
 
 
-
 $(watchSubmit);
+

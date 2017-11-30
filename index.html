@@ -23,29 +23,33 @@
         </div>
       </div>
     </header>
-    <main role="main" aria-live="assertive"> 
-      <div id="mapContainer" class="hidden">
-        <h2 class="mapDirectionHeader">Map and Directions</h2>
-        <div id="map"></div>
-        <div id="directions">
-          <ol class="directions"></ol>
-          <div class="estimatedTime"></div>
-          <div class="distance"></div>
+    <main role="main" aria-live="assertive">
+      <section> 
+        <div id="mapContainer" class="hidden">
+          <h2 class="mapDirectionHeader">Map and Directions</h2>
+          <div id="map"></div>
+          <div id="directions">
+            <ol class="directions"></ol>
+            <div class="estimatedTime"></div>
+            <div class="distance"></div>
+          </div>
         </div>
-      </div>
-      <div id="weatherContainer" class="hidden">
-        <h2 class="weatherHeader">Weather</h2>
-        <div class="weatherforecast"></div>
-        <div class="js-weather-results"></div>     
-        <div class="wundergroundLogo">
-          <p>
-            <a href="https://www.wunderground.com">
-              <img alt="wundergroundLogo" src="wundergroundLogo.jpg" width=100px>
-            </a>
-             Powered by Weather Underground
-          </p>
+      </section>
+      <section>
+        <div id="weatherContainer" class="hidden">
+          <h2 class="weatherHeader">Weather</h2>
+          <div class="weatherforecast"></div>
+          <div class="js-weather-results"></div>     
+          <div class="wundergroundLogo">
+            <p>
+              <a href="https://www.wunderground.com">
+                <img alt="wundergroundLogo" src="wundergroundLogo.jpg" width=100px>
+              </a>
+               Powered by Weather Underground
+            </p>
+          </div>
         </div>
-      </div> 
+      </section> 
     </main>
     <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ0E2z4VWHcV3YH-Io01lsoORCDsG9jRg"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
