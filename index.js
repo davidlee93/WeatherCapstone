@@ -94,6 +94,7 @@ function renderForecastResult(result) {
 function removeHiddenClass() {
   $('#mapContainer').removeClass('hidden');
   $('#weatherContainer').removeClass('hidden');
+  $('#wundergroundLogo').removeClass('hidden');
   document.getElementById('mapContainer').scrollIntoView({behavior: 'smooth'});
 }
 
