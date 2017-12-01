@@ -168,7 +168,7 @@ h3 {
 
 .js-weather-results	{
  	display: flex;
- 	padding-bottom: 20px;
+ 	padding-bottom: 60px;
 }
 
 .weather-day:nth-child(even) {
