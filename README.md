@@ -4,7 +4,7 @@ Thinkful's (https://www.thinkful.com/) API Capstone Project - a responsive web a
 
 ## Introduction
 
-WeatheOrNot allows you to you to see a map, directions, and the weather forecast of a possible future destination. You only need to enter in your origin and the destination you are considering. This can be an address, a city and state, or even a modern landmark.
+WeatheOrNot allows you to see a map, directions, and the weather forecast of a possible future destination. You only need to enter in your origin and the destination you are considering. This can be an address, a city and state, or even a modern landmark.
 
 ## Summary
 
