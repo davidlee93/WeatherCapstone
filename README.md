@@ -1,5 +1,7 @@
 # WeatherOrNot
 
+http://weatherornot.netlify.com/
+
 Thinkful's (https://www.thinkful.com/) API Capstone Project - a responsive web app to see whether or not to go on your next adventure.
 
 ## Introduction
@@ -31,6 +33,6 @@ Weather Page:
 
 ## Technical/Technology
 
-* The client-side web app is built using HTML/CSS, Javascript, jQuery.
-* The web app is fully responsive, adapting for mobile, table and desktop viewports.
-* Multiple APIs were used in making this web app - Google Maps Directions, Google Maps Geocode, and Wunderground APIs were utilized.
+- The client-side web app is built using HTML/CSS, Javascript, jQuery.
+- The web app is fully responsive, adapting for mobile, table and desktop viewports.
+- Multiple APIs were used in making this web app - Google Maps Directions, Google Maps Geocode, and Wunderground APIs were utilized.
