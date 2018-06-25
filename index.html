@@ -1,60 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <title>WeatherOrNot</title>
-    <link href="main.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-  </head>
-  <body>
-    <header role="search">
-      <div class="row">
-        <div class="banner">
-          <h1 class="tagline">Let's find out, WeatherOrNot</h1>
-          <form action="#" class="js-search-form flex">
-            <label for="query">from</label>
-            <input type="text" class="js-origin" placeholder="ex. San Francisco" required>
-            <label for="query"> to </label>
-            <input type="text" class="js-destination" placeholder="ex. Los Angeles" required>
-            <button type="submit">Search</button>
-          </form>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <title>WeatherOrNot</title>
+  <link href="main.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="img/favicon.ico">
+</head>
+
+<body>
+  <header role="search">
+    <div class="row">
+      <div class="banner">
+        <h1 class="tagline">Let's find out, WeatherOrNot</h1>
+        <form action="#" class="js-search-form flex">
+          <label for="query">from</label>
+          <input type="text" class="js-origin" placeholder="ex. San Francisco" required>
+          <label for="query"> to </label>
+          <input type="text" class="js-destination" placeholder="ex. Los Angeles" required>
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </header>
+  <main role="main" aria-live="assertive">
+    <section>
+      <div id="mapContainer" class="hidden">
+        <h2 class="mapDirectionHeader">Map and Directions</h2>
+        <div id="map"></div>
+        <div id="directions">
+          <ol class="directions"></ol>
+          <div class="estimatedTime"></div>
+          <div class="distance"></div>
         </div>
       </div>
-    </header>
-    <main role="main" aria-live="assertive">
-      <section> 
-        <div id="mapContainer" class="hidden">
-          <h2 class="mapDirectionHeader">Map and Directions</h2>
-          <div id="map"></div>
-          <div id="directions">
-            <ol class="directions"></ol>
-            <div class="estimatedTime"></div>
-            <div class="distance"></div>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div id="weatherContainer" class="hidden">
-          <h2 class="weatherHeader">Weather</h2>
-          <div class="weatherforecast"></div>
-          <div class="js-weather-results"></div>     
-        </div>
-      </section> 
-      <footer>
-        <div id="wundergroundLogo" class="hidden">
-          <p>
-            <a href="https://www.wunderground.com">
-              <img alt="wundergroundLogo" src="wundergroundLogo.jpg" width=100px>
-            </a>
-             Powered by Weather Underground
-          </p>
-        </div>
-      </footer>
-    </main>
-    <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ0E2z4VWHcV3YH-Io01lsoORCDsG9jRg"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="index.js"></script>
-  </body>  
+    </section>
+    <section>
+      <div id="weatherContainer" class="hidden">
+        <h2 class="weatherHeader">Weather</h2>
+        <div class="weatherforecast"></div>
+        <div class="js-weather-results"></div>
+      </div>
+    </section>
+    <footer>
+      <div id="wundergroundLogo" class="hidden">
+        <p>
+          <a href="https://www.wunderground.com">
+            <img alt="wundergroundLogo" src="wundergroundLogo.jpg" width=100px>
+          </a>
+          Powered by Weather Underground
+        </p>
+      </div>
+    </footer>
+  </main>
+  <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ0E2z4VWHcV3YH-Io01lsoORCDsG9jRg"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="index.js"></script>
+</body>
+
 </html>
